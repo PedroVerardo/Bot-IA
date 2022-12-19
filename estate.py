@@ -24,8 +24,11 @@ class Explore:
         self.direction = direction
     def update_state(self):
         print(self.x,self.y)
+        self.ant = self.x
         if(self.x == 1 and self.direction == "west"):
             return "virar_esquerda"
+        if(self.x == 1):
+            return "virar direita"
         elif(self.x == 58 and self.direction == "east"):
             return "virar_direita"
         elif(self.y == 1 and self.direction == "north"):
@@ -61,10 +64,13 @@ class Blocked:
     def update_state(self):
         if self.gameIA.player.x == 0 or self.gameIA.player.x == 59 or self.gameIA.player.y == 0 or self.gameIA.player.y == 34:
             self.gameIA.bords_state()
-        if self.cont == 0:
+        elif self.cont == 0:
             self.gameIA.reset_state()
         if (self.gameIA.player.x,self.gameIA.player.y) in self.last_position:
             return "virar_esquerda"
+        if self.cont == 1:
+            self.gameIA.reset_state()
+            return "virar_direita"
         self.cont += 1
         if self.cont == 9:
             self.cont = 0
@@ -104,7 +110,7 @@ class Breeze:
             if self.cont == 0:
                 self.cont += 1
                 return "andar_re"
-            if self.cont == 1:
+            if self.cont%2 == 1:
                 self.cont = 0
                 self.gameIA.reset_state()
                 return "virar_esquerda"

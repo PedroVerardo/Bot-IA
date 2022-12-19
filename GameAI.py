@@ -1,5 +1,4 @@
-﻿
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 
 """GameAI.py: INF1771 GameAI File - Where Decisions are made."""
 #############################################################
@@ -38,6 +37,7 @@ class GameAI():
         self.atirar = Atirar(self)
         self.breeze = Breeze(self)
         self.explore_bords = Boards(self)
+        self.ant = 0
         self.estado = self.explore
         self.visited = []
 
@@ -175,7 +175,7 @@ class GameAI():
             elif s == "damage":
                 self.estado = self.zigzag
 
-            elif s == re("enemy.*"):
+            elif bool(re.match("enemy.*",s)):
                 self.estado = self.atirar
 
 

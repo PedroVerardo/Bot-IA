@@ -31,15 +31,15 @@ import datetime
 # </summary>
 class Bot():
 
-    name = "Podre" # BOT NAME
-    host = "atari.icad.puc-rio.br" # SERVER
+    name = "NoNe" # BOT NAME
+    host = "192.168.0.49" # "atari.icad.puc-rio.br"
 
     client = None
     gameAi = None
     timer1 = None
     
     running = True
-    thread_interval = 1 # USE BETWEEN 0.1 and 1 (0.1 real setting, 1 debug settings and makes the bot slower)
+    thread_interval = 0.1 # USE BETWEEN 0.1 and 1 (0.1 real setting, 1 debug settings and makes the bot slower)
 
     playerList = {} #new Dictionary<long, PlayerInfo>
     shotList = [] #new List<ShotInfo>
@@ -357,7 +357,7 @@ class Bot():
 
             print("Connected")
             self.client.sendName(self.name)
-            #self.client.sendRGB(255,0,0)  # BOT COLOR
+            self.client.sendRGB(255,0,0)  # BOT COLOR
             self.client.sendRequestGameStatus()
             self.client.sendRequestUserStatus()
             self.client.sendRequestObservation()
